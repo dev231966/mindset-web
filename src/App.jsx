@@ -5,14 +5,20 @@ import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
 import './App.css'
 
-export default function App() {
+import { Outlet } from "react-router-dom";
+import Header from "./Header.jsx";
+import Footer from "./Footer.jsx";
+
+export default function Layout() {
   return (
-    <Routes>
-      <Route element={<Layout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-      </Route>
-    </Routes>
-  )
+    <>
+      <Header />
+
+      <main>
+        <Outlet />
+      </main>
+
+      <Footer />
+    </>
+  );
 }
