@@ -1,0 +1,23 @@
+:root {
+  --bg: #f7f7f5;
+  --ink: #1c1c1e;
+  --muted: #6b6b6b;
+  --accent: #0f6b62;
+  --border: #e2e1dc;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
