@@ -99,13 +99,7 @@ export default function Configuracoes() {
             label="Novidades da plataforma"
             control={<Toggle checked={settings.notifyNovidades} onChange={(v) => updateSetting('notifyNovidades', v)} label="Novidades da plataforma" />}
           />
-          <div className="settings-divider" />
-          <SettingsRow
-            label="Também por SMS"
-            description="Usa o teu saldo de SMS da operadora"
-            control={<Toggle checked={settings.notifyPorSms} onChange={(v) => updateSetting('notifyPorSms', v)} label="Também por SMS" />}
-          />
-        </SettingsSection>
+      
 
         <SettingsSection tint="success" title="Privacidade" icon={icon(<path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z" />)}>
           <SettingsRow
@@ -132,39 +126,7 @@ export default function Configuracoes() {
           />
         </SettingsSection>
 
-        <SettingsSection tint="gold" title="Pagamento" icon={icon(<><rect x="2" y="5" width="20" height="14" rx="2" /><line x1="2" y1="10" x2="22" y2="10" /></>)}>
-          {metodos.map((metodo) => (
-            <div className="settings-payment-item" key={metodo.id}>
-              <div className="settings-row-copy">
-                <strong>{metodo.nome}</strong>
-                <span>{metodo.numero}</span>
-              </div>
 
-              <button
-                className="settings-remove-btn"
-                type="button"
-                aria-label={`Remover ${metodo.nome}`}
-                onClick={() => removerMetodo(metodo.id)}
-              >
-                {icon(<><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></>, 15)}
-              </button>
-            </div>
-          ))}
-
-          {metodos.length === 0 && (
-            <div className="empty-state">
-              <strong>Sem métodos associados</strong>
-              <span>Adiciona M-Pesa, e-Mola ou Mkesh na próxima compra de Estudos.</span>
-            </div>
-          )}
-
-          <div className="settings-divider" />
-
-          <Link to="/estudos" className="settings-link-row">
-            <span>Histórico de compras de Estudos</span>
-            {chevron}
-          </Link>
-        </SettingsSection>
 
         <SettingsSection tint="danger" title="Conta" icon={icon(<><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></>)}>
           <SettingsRow
@@ -172,21 +134,7 @@ export default function Configuracoes() {
             control={<button className="btn btn-secondary" type="button" onClick={terminarTodasSessoes}>Terminar</button>}
           />
           <div className="settings-divider" />
-          <SettingsRow
-            label="Apagar conta"
-            description="Remove permanentemente os teus dados, Estudos e histórico"
-            control={
-              confirmarApagar ? (
-                <div className="settings-confirm-row">
-                  <button className="btn btn-ghost" type="button" onClick={() => setConfirmarApagar(false)}>Cancelar</button>
-                  <button className="btn btn-danger" type="button">Confirmar</button>
-                </div>
-              ) : (
-                <button className="btn btn-danger" type="button" onClick={() => setConfirmarApagar(true)}>Apagar</button>
-              )
-            }
-          />
-        </SettingsSection>
+
 
         <SettingsSection title="Sobre" icon={icon(<><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></>)}>
           <SettingsRow label="Versão" control={<span className="settings-static-value">Mindset 1.0.0</span>} />
