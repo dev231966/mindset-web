@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 
 import Layout from './components/layout/Layout.jsx'
+import { SettingsProvider } from './context/SettingsContext.jsx'
 import Home from './pages/Home.jsx'
 import Login from './pages/Login.jsx'
 import Dashboard from './pages/Dashboard.jsx'
@@ -24,46 +25,48 @@ import './App.css'
 
 export default function App() {
   return (
-    <Routes>
+    <SettingsProvider>
+      <Routes>
 
-      <Route element={<Layout />}>
+        <Route element={<Layout />}>
 
-        <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
 
-        <Route path="/explicacao" element={<Explicacao />} />
+          <Route path="/explicacao" element={<Explicacao />} />
 
-        <Route path="/avaliacao" element={<Avaliacao />} />
+          <Route path="/avaliacao" element={<Avaliacao />} />
 
-        <Route path="/estudos" element={<Estudos />} />
+          <Route path="/estudos" element={<Estudos />} />
 
-        <Route path="/ferramentas" element={<Ferramentas />} />
+          <Route path="/ferramentas" element={<Ferramentas />} />
 
-        <Route path="/material" element={<Material />} />
+          <Route path="/material" element={<Material />} />
 
-        <Route path="/evolucao" element={<Evolucao />} />
+          <Route path="/evolucao" element={<Evolucao />} />
 
-        <Route path="/ajuda-suporte" element={<AjudaSuporte />} />
+          <Route path="/ajuda-suporte" element={<AjudaSuporte />} />
 
-        <Route path="/convidar-amigos" element={<ConvidarAmigos />} />
+          <Route path="/convidar-amigos" element={<ConvidarAmigos />} />
 
-        <Route path="/conquistas" element={<Conquistas />} />
+          <Route path="/conquistas" element={<Conquistas />} />
 
-        <Route path="/sequencia-estudo" element={<SequenciaEstudo />} />
+          <Route path="/sequencia-estudo" element={<SequenciaEstudo />} />
 
-        <Route path="/quadro-honra" element={<QuadroHonra />} />
+          <Route path="/quadro-honra" element={<QuadroHonra />} />
 
-        <Route path="/loja-recompensas" element={<LojaRecompensas />} />
+          <Route path="/loja-recompensas" element={<LojaRecompensas />} />
 
-        <Route path="/perfil" element={<Perfil />} />
+          <Route path="/perfil" element={<Perfil />} />
 
-        <Route path="/configuracoes" element={<Configuracoes />} />
+          <Route path="/configuracoes" element={<Configuracoes />} />
 
-      </Route>
+        </Route>
 
-    </Routes>
+      </Routes>
+    </SettingsProvider>
   )
 }
