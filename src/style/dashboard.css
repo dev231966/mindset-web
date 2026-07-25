@@ -4,15 +4,167 @@
    Import feito apenas em src/pages/Dashboard.jsx
    ========================================== */
 
+/* ========== CABEÇALHO DE BOAS-VINDAS ========== */
+
+.dashboard-welcome {
+  padding: 24px 28px;
+  margin-bottom: 20px;
+}
+
+.welcome-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.welcome-text h1 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #143149;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.welcome-text p {
+  font-size: 0.92rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.welcome-actions {
+  flex-shrink: 0;
+}
+
+/* ========== ESTATÍSTICAS PRINCIPAIS ========== */
+
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.stat-card {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 46px rgba(18, 55, 84, 0.18);
+}
+
+.stat-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.stat-icon-box.tint-primary {
+  background: rgba(15, 76, 117, 0.1);
+  color: var(--primary);
+}
+
+.stat-icon-box.tint-success {
+  background: rgba(20, 184, 122, 0.12);
+  color: var(--success);
+}
+
+.stat-icon-box.tint-accent {
+  background: rgba(50, 130, 184, 0.14);
+  color: var(--primary-2);
+}
+
+.stat-icon-box.tint-warning {
+  background: rgba(244, 180, 0, 0.16);
+  color: #a97600;
+}
+
+.stat-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #143149;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-size: 0.88rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ========== MÉTRICAS ADICIONAIS ========== */
+
+.dashboard-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.metric-card {
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: transform 0.2s var(--ease);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+}
+
+.metric-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: rgba(15, 76, 117, 0.08);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+
+.metric-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.metric-info strong {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #143149;
+  line-height: 1;
+}
+
+.metric-info span {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
 /* ========== AÇÕES PRINCIPAIS ========== */
-/* Lista de botões grandes, cor sólida a preencher o card inteiro,
-   ícone e nome centrados. Cada um é um convite direto a entrar,
-   não um azulejo pequeno numa grelha. */
 
 .dashboard-actions {
   display: flex;
   flex-direction: column;
   gap: 14px;
+  margin-bottom: 20px;
 }
 
 .mini-card {
@@ -54,9 +206,7 @@
   letter-spacing: -0.01em;
 }
 
-/* Explicação, primeira da lista, a dor central da plataforma.
-   Ganha mais altura e o sinal ao vivo, o único movimento da página. */
-
+/* Explicação */
 .mini-card-featured {
   min-height: 132px;
   background: linear-gradient(135deg, var(--primary), var(--primary-2));
@@ -90,15 +240,12 @@
 }
 
 /* Avaliação */
-
 .mini-card-avaliacao {
   background: linear-gradient(135deg, var(--primary-2), #1f6f9e);
   --mc-shadow: rgba(50, 130, 184, 0.4);
 }
 
-/* Estudos, mesma paleta dourada do CoinBalance no header, texto escuro
-   porque o fundo aqui é claro, ao contrário dos outros cards */
-
+/* Estudos */
 .mini-card-gold {
   background: linear-gradient(135deg, #ffcf6e, #b8860b);
   color: #3a2400;
@@ -115,28 +262,24 @@
   letter-spacing: -0.02em;
 }
 
-/* Ferramentas, tom metálico, remete a instrumento */
-
+/* Ferramentas */
 .mini-card-ferramentas {
   background: linear-gradient(135deg, #5c6773, #2e3944);
   --mc-shadow: rgba(46, 57, 68, 0.4);
 }
 
-/* Meu Material, tom âmbar, remete a caderno */
-
+/* Meu Material */
 .mini-card-material {
   background: linear-gradient(135deg, #d8ad5f, #a97a2e);
   --mc-shadow: rgba(169, 122, 46, 0.4);
 }
 
 /* ========== FAIXA DE APOIO ========== */
-/* Desempenho e Dúvidas Recentes, discretos, abaixo da lista de ações */
 
 .dashboard-support {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 14px;
-  margin-top: 4px;
 }
 
 .compact-card {
@@ -183,8 +326,6 @@
 }
 
 /* ========== RESPONSIVO ========== */
-/* Em ecrãs largos, a lista de ações passa a duas colunas para não
-   ficar uma coluna comprida sem necessidade. Explicação ocupa as duas. */
 
 @media (min-width: 960px) {
   .dashboard-actions {
@@ -201,8 +342,49 @@
   }
 }
 
+@media (max-width: 1200px) {
+  .dashboard-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 959px) {
   .dashboard-support {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .welcome-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .welcome-actions {
+    width: 100%;
+  }
+
+  .welcome-actions .btn {
+    width: 100%;
+  }
+
+  .dashboard-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-welcome {
+    padding: 20px;
+  }
+
+  .welcome-text h1 {
+    font-size: 1.3rem;
+  }
+
+  .stat-value {
+    font-size: 1.9rem;
   }
 }
