@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
 
-export default function MiniCard({ to, label, icon, featured = false, gold = false, value }) {
-  const classNames = [
-    'mini-card',
-    featured ? 'mini-card-featured' : '',
-    gold ? 'mini-card-gold' : '',
-  ].filter(Boolean).join(' ')
+export default function MiniCard({ to, label, icon, variant, value, live = false }) {
+  const classNames = ['mini-card', variant ? `mini-card-${variant}` : '']
+    .filter(Boolean)
+    .join(' ')
 
   return (
     <Link to={to} className={classNames}>
+      {live && <span className="mini-card-live" />}
+
       <div className="mini-card-icon">{icon}</div>
 
       {value !== undefined && (

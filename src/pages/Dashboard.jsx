@@ -25,7 +25,8 @@ export default function Dashboard() {
         <MiniCard
           to="/explicacao"
           label="Explicação"
-          featured
+          variant="featured"
+          live
           icon={
             <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -36,6 +37,7 @@ export default function Dashboard() {
         <MiniCard
           to="/avaliacao"
           label="Avaliação"
+          variant="avaliacao"
           icon={
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M9 11l3 3L22 4" />
@@ -47,7 +49,7 @@ export default function Dashboard() {
         <MiniCard
           to="/estudos"
           label="Estudos"
-          gold
+          variant="gold"
           value={`${saldo} Std`}
           icon={
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -61,6 +63,7 @@ export default function Dashboard() {
         <MiniCard
           to="/ferramentas"
           label="Ferramentas"
+          variant="ferramentas"
           icon={
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2z" />
@@ -71,6 +74,7 @@ export default function Dashboard() {
         <MiniCard
           to="/material"
           label="Meu Material"
+          variant="material"
           icon={
             <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
