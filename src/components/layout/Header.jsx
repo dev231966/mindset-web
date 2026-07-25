@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom'
+import CoinBalance from '../common/CoinBalance'
+
 export default function Header() {
   return (
    <header className="header">
@@ -17,6 +19,9 @@ export default function Header() {
 
     {/* Header Actions */}
     <div className="header-actions">
+
+      {/* Saldo de Estudos */}
+      <CoinBalance amount={5} />
 
       {/* Notifications */}
       <div 
