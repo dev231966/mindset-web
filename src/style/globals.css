@@ -1512,3 +1512,130 @@ body.sidebar-open-mobile .sidebar-overlay {
     height: 40px;
   }
 }
+
+/* ==========================================
+   PAINEL DE NOTIFICAÇÕES
+   Painel deslizante pela direita, mesmo mecanismo
+   do sidebar em mobile, fixo, fora do ecrã por defeito
+   ========================================== */
+
+.notif-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1250;
+  background: rgba(10, 25, 39, 0.34);
+  backdrop-filter: blur(4px);
+}
+
+body.notif-open .notif-overlay {
+  display: block;
+}
+
+.notif-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: 360px;
+  max-width: 90vw;
+  background: var(--surface-strong);
+  border-left: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  z-index: 1300;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.28s var(--ease);
+}
+
+body.notif-open .notif-panel {
+  transform: translateX(0);
+}
+
+.notif-panel-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-height);
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+}
+
+.notif-panel-head strong {
+  font-size: 1.02rem;
+  color: #143149;
+}
+
+.notif-close {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: rgba(15, 76, 117, 0.06);
+  color: var(--primary);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.notif-close:hover {
+  background: rgba(15, 76, 117, 0.12);
+}
+
+.notif-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.notif-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 10px;
+  border-radius: 12px;
+  transition: background 0.16s ease;
+}
+
+.notif-item:hover {
+  background: rgba(15, 76, 117, 0.05);
+}
+
+.notif-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: var(--primary-2);
+  flex-shrink: 0;
+}
+
+.notif-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.notif-item-body strong {
+  font-size: 0.86rem;
+  font-weight: 700;
+  color: #143149;
+  line-height: 1.35;
+}
+
+.notif-item-body span {
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+@media (max-width: 480px) {
+  .notif-panel {
+    width: 100%;
+    max-width: 100vw;
+  }
+}
