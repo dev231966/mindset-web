@@ -1,6 +1,8 @@
-<div className="sidebar-overlay" id="sidebarOverlay"></div>
+export default function Sidebar(){
+  return(
+  <>
+    <div className="sidebar-overlay" id="sidebarOverlay"></div>
 
-<div className="app-body">
 
   <aside className="sidebar" id="sidebar">
 
@@ -165,4 +167,7 @@
 
   </aside>
 
-</div>
+</>
+
+    )
+}
