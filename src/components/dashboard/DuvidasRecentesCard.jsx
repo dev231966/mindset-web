@@ -2,7 +2,7 @@ export default function DuvidasRecentesCard({ duvidas = [] }) {
   const temDuvidas = duvidas.length > 0
 
   return (
-    <div className="glass info-card activity-card">
+    <div className="glass info-card activity-card compact-card">
 
       <div className="activity-head">
         <strong>Dúvidas Recentes</strong>
@@ -32,7 +32,6 @@ export default function DuvidasRecentesCard({ duvidas = [] }) {
         <div className="empty-state">
           <strong>Ainda não tiraste nenhuma dúvida</strong>
           <span>A tua primeira explicação aparece aqui assim que a pedires.</span>
-          <a href="/duvida/nova">Tirar a primeira dúvida</a>
         </div>
       )}
 

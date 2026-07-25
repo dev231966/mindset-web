@@ -1,0 +1,173 @@
+/* ==========================================
+   DASHBOARD
+   Estilos específicos desta página.
+   Import feito apenas em src/pages/Dashboard.jsx
+   ========================================== */
+
+/* ========== GRELHA DE MINI CARDS ========== */
+/* Centro da página, cada card é uma porta de entrada para um serviço */
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.mini-card {
+  grid-column: span 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  text-decoration: none;
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+
+.mini-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 22px 54px rgba(18, 55, 84, 0.16);
+}
+
+.mini-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 76, 117, 0.08);
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.mini-card-label {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: #143149;
+}
+
+/* Explicação, card em destaque, dor central da plataforma */
+
+.mini-card-featured {
+  grid-column: span 2;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  border: none;
+}
+
+.mini-card-featured .mini-card-icon {
+  background: rgba(255, 255, 255, 0.18);
+  color: white;
+}
+
+.mini-card-featured .mini-card-label {
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* Estudos, mesma linguagem dourada do CoinBalance no header */
+
+.mini-card-gold {
+  background: linear-gradient(135deg, var(--gold-bg-1), var(--gold-bg-2));
+  border: 1px solid var(--gold-border);
+}
+
+.mini-card-gold .mini-card-icon {
+  background: linear-gradient(135deg, #ffd35c, #a86e00);
+  color: #4a2e00;
+}
+
+.mini-card-gold .mini-card-label {
+  color: var(--gold-text);
+}
+
+.mini-card-gold-value {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--gold-text);
+  letter-spacing: -0.02em;
+}
+
+/* ========== FAIXA DE APOIO ========== */
+/* Desempenho e Dúvidas Recentes, discretos, abaixo da grelha principal */
+
+.dashboard-support {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 4px;
+}
+
+.compact-card {
+  padding: 16px;
+}
+
+.compact-card .progress-title strong,
+.compact-card .activity-head strong {
+  font-size: 0.88rem;
+}
+
+.compact-card .progress-title span {
+  font-size: 0.76rem;
+}
+
+.compact-card .progress-percent {
+  font-size: 1.15rem;
+}
+
+.compact-card .progress-track {
+  height: 8px;
+}
+
+.compact-card .empty-state strong {
+  font-size: 0.82rem;
+}
+
+.compact-card .empty-state span {
+  font-size: 0.76rem;
+}
+
+.compact-card .activity-item {
+  gap: 10px;
+}
+
+.compact-card .activity-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.compact-card .activity-icon svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ========== RESPONSIVO ========== */
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mini-card-featured {
+    grid-column: span 2;
+  }
+
+  .dashboard-support {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mini-card-featured {
+    grid-column: span 1;
+  }
+}

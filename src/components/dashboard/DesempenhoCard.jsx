@@ -2,7 +2,7 @@ export default function DesempenhoCard({ disciplina, percentagem = 0, topicosCob
   const temProgresso = Boolean(disciplina) && totalTopicos > 0
 
   return (
-    <div className="glass info-card progress-card">
+    <div className="glass info-card progress-card compact-card">
 
       <div className="progress-top">
         <div className="progress-title">
@@ -29,7 +29,6 @@ export default function DesempenhoCard({ disciplina, percentagem = 0, topicosCob
         <div className="empty-state">
           <strong>Ainda sem progresso registado</strong>
           <span>Começa por tirar a tua primeira dúvida numa disciplina.</span>
-          <a href="/duvida/nova">Tirar a primeira dúvida</a>
         </div>
       )}
 
