@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 import { useSettings } from '../context/SettingsContext'
@@ -19,17 +18,6 @@ export default function Configuracoes() {
   const navigate = useNavigate()
   const { logout } = useAuth()
   const { settings, updateSetting } = useSettings()
-
-  const [metodos, setMetodos] = useState([
-    { id: 1, nome: 'M-Pesa', numero: '84 xxx 1234' },
-    { id: 2, nome: 'e-Mola', numero: '86 xxx 5678' },
-  ])
-
-  const [confirmarApagar, setConfirmarApagar] = useState(false)
-
-  function removerMetodo(id) {
-    setMetodos((atual) => atual.filter((metodo) => metodo.id !== id))
-  }
 
   function terminarTodasSessoes() {
     logout()
@@ -99,7 +87,7 @@ export default function Configuracoes() {
             label="Novidades da plataforma"
             control={<Toggle checked={settings.notifyNovidades} onChange={(v) => updateSetting('notifyNovidades', v)} label="Novidades da plataforma" />}
           />
-      
+        </SettingsSection>
 
         <SettingsSection tint="success" title="Privacidade" icon={icon(<path d="M12 2 4 5v6c0 5 3.5 9 8 11 4.5-2 8-6 8-11V5l-8-3z" />)}>
           <SettingsRow
@@ -126,15 +114,12 @@ export default function Configuracoes() {
           />
         </SettingsSection>
 
-
-
         <SettingsSection tint="danger" title="Conta" icon={icon(<><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" /><polyline points="16 17 21 12 16 7" /><line x1="21" y1="12" x2="9" y2="12" /></>)}>
           <SettingsRow
             label="Terminar sessão em todos os dispositivos"
             control={<button className="btn btn-secondary" type="button" onClick={terminarTodasSessoes}>Terminar</button>}
           />
-          <div className="settings-divider" />
-
+        </SettingsSection>
 
         <SettingsSection title="Sobre" icon={icon(<><circle cx="12" cy="12" r="10" /><line x1="12" y1="16" x2="12" y2="12" /><line x1="12" y1="8" x2="12.01" y2="8" /></>)}>
           <SettingsRow label="Versão" control={<span className="settings-static-value">Mindset 1.0.0</span>} />
