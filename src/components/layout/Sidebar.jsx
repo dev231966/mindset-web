@@ -110,7 +110,7 @@ export default function Sidebar() {
 
       <div className="sidebar-promo-text">
         <strong>Plano Aprendiz</strong>
-        <span>Sobe para Estudante e ganha mais Estudos</span>
+        <span>tornar-se Maza</span>
       </div>
 
       <span className="sidebar-promo-arrow">
