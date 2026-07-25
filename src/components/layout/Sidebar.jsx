@@ -1,5 +1,49 @@
-export default function Sidebar(){
-  return(
+
+import { useEffect } from "react";
+
+export default function Sidebar() {
+
+  useEffect(() => {
+    const body = document.body;
+    const sidebarToggle = document.getElementById("sidebarToggle");
+    const sidebarOverlay = document.getElementById("sidebarOverlay");
+
+    function isMobileLayout() {
+      return window.matchMedia("(max-width: 1080px)").matches;
+    }
+
+    function toggleSidebar() {
+      if (isMobileLayout()) {
+        body.classList.toggle("sidebar-open-mobile");
+      } else {
+        body.classList.toggle("sidebar-closed");
+      }
+    }
+
+    sidebarToggle?.addEventListener("click", toggleSidebar);
+
+    sidebarOverlay?.addEventListener("click", () => {
+      body.classList.remove("sidebar-open-mobile");
+    });
+
+    function handleResize() {
+      if (!isMobileLayout()) {
+        body.classList.remove("sidebar-open-mobile");
+      }
+    }
+
+    window.addEventListener("resize", handleResize);
+
+
+    return () => {
+      sidebarToggle?.removeEventListener("click", toggleSidebar);
+      window.removeEventListener("resize", handleResize);
+    };
+
+  }, []);
+
+
+  return (
   <>
     <div className="sidebar-overlay" id="sidebarOverlay"></div>
 
@@ -169,5 +213,5 @@ export default function Sidebar(){
 
 </>
 
-    )
+  );
 }
