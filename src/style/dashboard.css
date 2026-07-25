@@ -4,102 +4,78 @@
    Import feito apenas em src/pages/Dashboard.jsx
    ========================================== */
 
-/* ========== GRELHA DE MINI CARDS ========== */
-/* Centro da página, cada card é uma porta de entrada para um serviço */
+/* ========== AÇÕES PRINCIPAIS ========== */
+/* Lista de botões grandes, cor sólida a preencher o card inteiro,
+   ícone e nome centrados. Cada um é um convite direto a entrar,
+   não um azulejo pequeno numa grelha. */
 
-.dashboard-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+.dashboard-actions {
+  display: flex;
+  flex-direction: column;
   gap: 14px;
 }
 
 .mini-card {
   position: relative;
   overflow: hidden;
-  grid-column: span 1;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  gap: 14px;
-  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 108px;
   padding: 22px;
   border-radius: var(--radius-lg);
-  background: var(--surface);
-  border: 1px solid rgba(255, 255, 255, 0.65);
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(22px);
-  -webkit-backdrop-filter: blur(22px);
   text-decoration: none;
+  text-align: center;
+  color: white;
+  box-shadow: 0 14px 30px rgba(18, 55, 84, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.14);
   transition: transform 0.2s var(--ease), box-shadow 0.2s var(--ease);
 }
 
-.mini-card::before {
-  content: "";
-  position: absolute;
-  top: -34px;
-  right: -34px;
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  background: var(--mc-orb, transparent);
-  filter: blur(30px);
-  pointer-events: none;
-}
-
 .mini-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 46px var(--mc-orb, rgba(18, 55, 84, 0.18));
+  transform: translateY(-3px);
+  box-shadow: 0 22px 46px var(--mc-shadow, rgba(18, 55, 84, 0.28));
 }
 
 .mini-card-icon {
-  position: relative;
-  width: 52px;
-  height: 52px;
-  border-radius: 15px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
   display: grid;
   place-items: center;
-  flex-shrink: 0;
-  background: linear-gradient(135deg, var(--mc-icon-1, rgba(15, 76, 117, 0.1)), var(--mc-icon-2, rgba(15, 76, 117, 0.1)));
-  color: var(--mc-icon-color, var(--primary));
-  box-shadow: 0 8px 16px rgba(18, 55, 84, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .mini-card-label {
-  position: relative;
-  font-size: 1rem;
+  font-size: 1.02rem;
   font-weight: 800;
   letter-spacing: -0.01em;
-  color: #143149;
 }
 
-/* Explicação, destaque, a dor central da plataforma */
+/* Explicação, primeira da lista, a dor central da plataforma.
+   Ganha mais altura e o sinal ao vivo, o único movimento da página. */
 
 .mini-card-featured {
-  grid-column: span 2;
-  min-height: 168px;
-  border: none;
+  min-height: 132px;
   background: linear-gradient(135deg, var(--primary), var(--primary-2));
-  --mc-orb: rgba(255, 255, 255, 0.28);
-  --mc-icon-1: rgba(255, 255, 255, 0.22);
-  --mc-icon-2: rgba(255, 255, 255, 0.22);
-  --mc-icon-color: #ffffff;
+  --mc-shadow: rgba(15, 76, 117, 0.4);
 }
 
 .mini-card-featured .mini-card-icon {
-  width: 60px;
-  height: 60px;
+  width: 54px;
+  height: 54px;
 }
 
 .mini-card-featured .mini-card-label {
-  color: white;
-  font-size: 1.2rem;
+  font-size: 1.18rem;
 }
 
 .mini-card-live {
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: 18px;
+  right: 18px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -113,64 +89,48 @@
   100% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
 }
 
-/* Avaliação, tom do accent secundário já usado nos cards de estatística */
+/* Avaliação */
 
 .mini-card-avaliacao {
-  --mc-orb: rgba(50, 130, 184, 0.3);
-  --mc-icon-1: var(--primary-2);
-  --mc-icon-2: var(--primary);
-  --mc-icon-color: #ffffff;
+  background: linear-gradient(135deg, var(--primary-2), #1f6f9e);
+  --mc-shadow: rgba(50, 130, 184, 0.4);
 }
 
-/* Estudos, mesma linguagem dourada do CoinBalance no header */
+/* Estudos, mesma paleta dourada do CoinBalance no header, texto escuro
+   porque o fundo aqui é claro, ao contrário dos outros cards */
 
 .mini-card-gold {
-  background: linear-gradient(135deg, var(--gold-bg-1), var(--gold-bg-2));
-  border: 1px solid var(--gold-border);
-  --mc-orb: rgba(184, 130, 6, 0.3);
-  --mc-icon-1: #ffd35c;
-  --mc-icon-2: #a86e00;
-  --mc-icon-color: #4a2e00;
+  background: linear-gradient(135deg, #ffcf6e, #b8860b);
+  color: #3a2400;
+  --mc-shadow: rgba(184, 130, 6, 0.4);
 }
 
-.mini-card-gold .mini-card-label {
-  color: var(--gold-text);
+.mini-card-gold .mini-card-icon {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .mini-card-gold-value {
-  position: relative;
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 900;
-  color: var(--gold-text);
   letter-spacing: -0.02em;
 }
 
-/* Ferramentas, tom metálico, remete a instrumento, não a mais um botão azul */
+/* Ferramentas, tom metálico, remete a instrumento */
 
 .mini-card-ferramentas {
-  --mc-orb: rgba(70, 82, 93, 0.28);
-  --mc-icon-1: #8a97a3;
-  --mc-icon-2: #3f4a54;
-  --mc-icon-color: #ffffff;
+  background: linear-gradient(135deg, #5c6773, #2e3944);
+  --mc-shadow: rgba(46, 57, 68, 0.4);
 }
 
-/* Meu Material, fundo em linhas subtis, remete a caderno pautado */
+/* Meu Material, tom âmbar, remete a caderno */
 
 .mini-card-material {
-  background: repeating-linear-gradient(
-    to bottom,
-    var(--surface) 0px,
-    var(--surface) 27px,
-    rgba(15, 76, 117, 0.07) 28px
-  );
-  --mc-orb: rgba(196, 154, 74, 0.26);
-  --mc-icon-1: #f3ece0;
-  --mc-icon-2: #d8c49a;
-  --mc-icon-color: #6b5730;
+  background: linear-gradient(135deg, #d8ad5f, #a97a2e);
+  --mc-shadow: rgba(169, 122, 46, 0.4);
 }
 
 /* ========== FAIXA DE APOIO ========== */
-/* Desempenho e Dúvidas Recentes, discretos, abaixo da grelha principal */
+/* Desempenho e Dúvidas Recentes, discretos, abaixo da lista de ações */
 
 .dashboard-support {
   display: grid;
@@ -223,27 +183,26 @@
 }
 
 /* ========== RESPONSIVO ========== */
+/* Em ecrãs largos, a lista de ações passa a duas colunas para não
+   ficar uma coluna comprida sem necessidade. Explicação ocupa as duas. */
 
-@media (max-width: 768px) {
-  .dashboard-grid {
+@media (min-width: 960px) {
+  .dashboard-actions {
+    display: grid;
     grid-template-columns: repeat(2, 1fr);
   }
 
   .mini-card-featured {
-    grid-column: span 2;
+    grid-column: 1 / -1;
   }
 
   .dashboard-support {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 480px) {
-  .dashboard-grid {
+@media (max-width: 959px) {
+  .dashboard-support {
     grid-template-columns: 1fr;
-  }
-
-  .mini-card-featured {
-    grid-column: span 1;
   }
 }

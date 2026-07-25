@@ -20,7 +20,7 @@ export default function Dashboard() {
   return (
     <div className="shell">
 
-      <div className="dashboard-grid">
+      <div className="dashboard-actions">
 
         <MiniCard
           to="/explicacao"
