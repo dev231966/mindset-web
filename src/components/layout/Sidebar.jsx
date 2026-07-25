@@ -21,15 +21,21 @@ export default function Sidebar() {
   const navigate = useNavigate();
   const { logout } = useAuth();
 
+  function isMobileLayout() {
+    return window.matchMedia("(max-width: 1080px)").matches;
+  }
+
+  function closeOnNavigate() {
+    if (isMobileLayout()) {
+      document.body.classList.remove("sidebar-open-mobile");
+    }
+  }
+
   useEffect(() => {
     const body = document.body;
     const sidebarToggle = document.getElementById("sidebarToggle");
     const sidebarClose = document.getElementById("sidebarClose");
     const sidebarOverlay = document.getElementById("sidebarOverlay");
-
-    function isMobileLayout() {
-      return window.matchMedia("(max-width: 1080px)").matches;
-    }
 
     function toggleSidebar() {
       if (isMobileLayout()) {
@@ -70,6 +76,7 @@ export default function Sidebar() {
   }, []);
 
   function handleLogout() {
+    closeOnNavigate();
     logout();
     navigate("/login");
   }
@@ -83,7 +90,7 @@ export default function Sidebar() {
       <aside className="sidebar" id="sidebar">
 
         <div className="sidebar-head">
-          <NavLink to="/dashboard" className="logo-section">
+          <NavLink to="/dashboard" className="logo-section" onClick={closeOnNavigate}>
             <div className="logo-icon">M</div>
             <div className="logo-text">
               <h1>Mindset</h1>
@@ -103,7 +110,7 @@ export default function Sidebar() {
 
         <div className="sidebar-divider"></div>
 
-        <NavLink to="/estudos" className="sidebar-promo">
+        <NavLink to="/estudos" className="sidebar-promo" onClick={closeOnNavigate}>
           <div className="sidebar-promo-icon">
             {navIcon(<path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z" />)}
           </div>
@@ -126,7 +133,7 @@ export default function Sidebar() {
             <p className="sidebar-label">PRINCIPAL</p>
 
             <nav className="nav-list">
-              <NavLink to="/dashboard" end className={linkClass}>
+              <NavLink to="/dashboard" end className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -140,7 +147,7 @@ export default function Sidebar() {
                 <span className="label">Visão Geral</span>
               </NavLink>
 
-              <NavLink to="/explicacao" className={linkClass}>
+              <NavLink to="/explicacao" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
@@ -149,7 +156,7 @@ export default function Sidebar() {
                 <span className="label">Explicação</span>
               </NavLink>
 
-              <NavLink to="/avaliacao" className={linkClass}>
+              <NavLink to="/avaliacao" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -169,7 +176,7 @@ export default function Sidebar() {
             <p className="sidebar-label">GERAL</p>
 
             <nav className="nav-list">
-              <NavLink to="/evolucao" className={linkClass}>
+              <NavLink to="/evolucao" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -183,7 +190,7 @@ export default function Sidebar() {
                 <span className="label">Evolução</span>
               </NavLink>
 
-              <NavLink to="/ferramentas" className={linkClass}>
+              <NavLink to="/ferramentas" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <path d="M14.7 6.3a4 4 0 1 0-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 0 0 5.4-5.4l-2.8 2.8-2-2z" />
@@ -192,7 +199,7 @@ export default function Sidebar() {
                 <span className="label">Ferramentas</span>
               </NavLink>
 
-              <NavLink to="/estudos" className={linkClass}>
+              <NavLink to="/estudos" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -205,7 +212,7 @@ export default function Sidebar() {
                 <span className="label">Estudos</span>
               </NavLink>
 
-              <NavLink to="/material" className={linkClass}>
+              <NavLink to="/material" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -217,7 +224,7 @@ export default function Sidebar() {
                 <span className="label">Meu Material</span>
               </NavLink>
 
-              <NavLink to="/ajuda-suporte" className={linkClass}>
+              <NavLink to="/ajuda-suporte" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -238,7 +245,7 @@ export default function Sidebar() {
             <p className="sidebar-label">RECOMPENSAS</p>
 
             <nav className="nav-list">
-              <NavLink to="/convidar-amigos" className={linkClass}>
+              <NavLink to="/convidar-amigos" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -253,7 +260,7 @@ export default function Sidebar() {
                 <span className="label">Convidar Amigos</span>
               </NavLink>
 
-              <NavLink to="/conquistas" className={linkClass}>
+              <NavLink to="/conquistas" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -268,7 +275,7 @@ export default function Sidebar() {
                 <span className="label">Conquistas</span>
               </NavLink>
 
-              <NavLink to="/sequencia-estudo" className={linkClass}>
+              <NavLink to="/sequencia-estudo" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
@@ -277,7 +284,7 @@ export default function Sidebar() {
                 <span className="label">Sequência de Estudo</span>
               </NavLink>
 
-              <NavLink to="/quadro-honra" className={linkClass}>
+              <NavLink to="/quadro-honra" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -289,7 +296,7 @@ export default function Sidebar() {
                 <span className="label">Quadro de Honra</span>
               </NavLink>
 
-              <NavLink to="/loja-recompensas" className={linkClass}>
+              <NavLink to="/loja-recompensas" className={linkClass} onClick={closeOnNavigate}>
                 <span className="icon">
                   {navIcon(
                     <>
@@ -310,7 +317,7 @@ export default function Sidebar() {
 
         <div className="sidebar-user-footer">
 
-          <NavLink to="/perfil" className="sidebar-user-row">
+          <NavLink to="/perfil" className="sidebar-user-row" onClick={closeOnNavigate}>
             <div className="user-avatar-sm">J</div>
             <div className="sidebar-user-info">
               <strong>Juvêncio Penga</strong>
@@ -318,7 +325,7 @@ export default function Sidebar() {
             </div>
           </NavLink>
 
-          <NavLink to="/configuracoes" className="sidebar-footer-link">
+          <NavLink to="/configuracoes" className="sidebar-footer-link" onClick={closeOnNavigate}>
             <span className="icon">
               {navIcon(
                 <>
