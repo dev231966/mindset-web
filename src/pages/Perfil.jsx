@@ -1,17 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-
-const conquistasExemplo = [
-  { id: 1, nome: 'Primeira Dúvida', data: '12 mar' },
-  { id: 2, nome: 'Semana Completa', data: '19 mar' },
-  { id: 3, nome: 'Explicação Compreendida', data: '26 mar' },
-]
+import { Link, useNavigate } from 'react-router-dom'
+import EditableText from '../components/common/EditableText'
 
 const icon = (paths, size = 20) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     {paths}
   </svg>
 )
+
+const dadosOriginais = {
+  nome: 'Juvêncio Penga',
+  nickname: 'juvencio_dev',
+  telefone: '84 123 4567',
+}
+
+const email = 'juvencio@email.com'
 
 export default function Perfil() {
   const navigate = useNavigate()
@@ -21,10 +24,14 @@ export default function Perfil() {
   const [avatarUrl, setAvatarUrl] = useState(null)
   const [menuAberto, setMenuAberto] = useState(false)
 
-  const [nome, setNome] = useState('Juvêncio Penga')
-  const [nickname, setNickname] = useState('juvencio_dev')
-  const [telefone, setTelefone] = useState('84 123 4567')
-  const email = 'juvencio@email.com'
+  const [nome, setNome] = useState(dadosOriginais.nome)
+  const [nickname, setNickname] = useState(dadosOriginais.nickname)
+  const [telefone, setTelefone] = useState(dadosOriginais.telefone)
+
+  const isDirty =
+    nome !== dadosOriginais.nome ||
+    nickname !== dadosOriginais.nickname ||
+    telefone !== dadosOriginais.telefone
 
   useEffect(() => {
     function handleClickFora(event) {
@@ -56,8 +63,20 @@ export default function Perfil() {
     setMenuAberto(false)
   }
 
+  function handleCancelar() {
+    setNome(dadosOriginais.nome)
+    setNickname(dadosOriginais.nickname)
+    setTelefone(dadosOriginais.telefone)
+  }
+
+  function handleGuardar() {
+    dadosOriginais.nome = nome
+    dadosOriginais.nickname = nickname
+    dadosOriginais.telefone = telefone
+  }
+
   return (
-    <div className="shell">
+    <div className="shell perfil-shell">
 
       <div className="settings-topbar">
         <h1>Perfil</h1>
@@ -84,7 +103,7 @@ export default function Perfil() {
           <div className="identity-avatar-block" ref={menuRef}>
             <button
               type="button"
-              className="avatar avatar-lg avatar-editable"
+              className="avatar avatar-xl avatar-editable"
               onClick={() => setMenuAberto((atual) => !atual)}
               aria-label="Alterar foto de perfil"
             >
@@ -120,71 +139,71 @@ export default function Perfil() {
             />
           </div>
 
-          <div className="field-grid">
-            <div className="field">
-              <label htmlFor="campo-nome">Nome</label>
-              <input id="campo-nome" type="text" value={nome} onChange={(e) => setNome(e.target.value)} />
+          <EditableText value={nome} onChange={setNome} className="identity-name" />
+
+          <div className="identity-nickname-row">
+            <span>@</span>
+            <EditableText value={nickname} onChange={setNickname} className="identity-nickname" />
+          </div>
+
+          <div className="identity-divider" />
+
+          <div className="identity-secondary-row">
+            <div className="identity-secondary-item">
+              {icon(<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />, 14)}
+              <EditableText value={telefone} onChange={setTelefone} className="identity-secondary-text" />
             </div>
 
-            <div className="field">
-              <label htmlFor="campo-nickname">Nickname</label>
-              <input id="campo-nickname" type="text" value={nickname} onChange={(e) => setNickname(e.target.value)} />
-            </div>
-
-            <div className="field">
-              <label htmlFor="campo-telefone">Número de telefone</label>
-              <input id="campo-telefone" type="tel" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
-            </div>
-
-            <div className="field">
-              <label htmlFor="campo-email">Email</label>
-              <input id="campo-email" type="email" value={email} disabled />
+            <div className="identity-secondary-item">
+              {icon(<><rect x="3" y="11" width="18" height="11" rx="2" /><path d="M7 11V7a5 5 0 0 1 10 0v4" /></>, 14)}
+              <span className="identity-secondary-text identity-secondary-disabled">{email}</span>
             </div>
           </div>
 
-          <button className="btn btn-primary" type="button">
-            Guardar alterações
-          </button>
+          {isDirty && (
+            <div className="identity-actions">
+              <button className="btn btn-ghost" type="button" onClick={handleCancelar}>Cancelar</button>
+              <button className="btn btn-primary" type="button" onClick={handleGuardar}>Guardar alterações</button>
+            </div>
+          )}
 
         </div>
 
-        <div className="stat-grid">
-          <div className="stat-block">
-            <span className="stat-block-value">12º</span>
-            <span className="stat-block-label">no Quadro de Honra</span>
-          </div>
+        <div className="glass info-card">
+          <div className="stat-grid">
 
-          <div className="stat-block">
-            <span className="stat-block-value">7</span>
-            <span className="stat-block-label">dias de sequência</span>
-          </div>
+            <Link to="/quadro-honra" className="stat-block">
+              <span className="card-icon-box tint-warning">
+                {icon(<><circle cx="12" cy="8" r="6" /><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" /></>, 18)}
+              </span>
+              <span className="stat-block-value">12º</span>
+              <span className="stat-block-label">Quadro de Honra</span>
+            </Link>
 
-          <div className="stat-block">
-            <span className="stat-block-value">3</span>
-            <span className="stat-block-label">conquistas</span>
-          </div>
+            <Link to="/sequencia-estudo" className="stat-block">
+              <span className="card-icon-box tint-danger">
+                {icon(<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />, 18)}
+              </span>
+              <span className="stat-block-value">7</span>
+              <span className="stat-block-label">dias seguidos</span>
+            </Link>
 
-          <div className="stat-block">
-            <span className="stat-block-value">24</span>
-            <span className="stat-block-label">explicações pedidas</span>
-          </div>
-        </div>
+            <Link to="/conquistas" className="stat-block">
+              <span className="card-icon-box tint-success">
+                {icon(<><path d="M8 3h8v6a4 4 0 0 1-8 0V3z" /><path d="M8 5H5a3 3 0 0 0 3 3" /><path d="M16 5h3a3 3 0 0 1-3 3" /><path d="M12 13v4" /><path d="M9 21h6" /></>, 18)}
+              </span>
+              <span className="stat-block-value">3</span>
+              <span className="stat-block-label">conquistas</span>
+            </Link>
 
-        <div className="glass info-card settings-card">
-          <strong className="settings-card-head">Conquistas Desbloqueadas</strong>
+            <Link to="/evolucao" className="stat-block">
+              <span className="card-icon-box tint-accent">
+                {icon(<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />, 18)}
+              </span>
+              <span className="stat-block-value">24</span>
+              <span className="stat-block-label">explicações</span>
+            </Link>
 
-          <div className="badge-list">
-            {conquistasExemplo.map((conquista) => (
-              <div className="badge-item" key={conquista.id}>
-                <span className="badge-icon">
-                  {icon(<><circle cx="12" cy="12" r="9" /><polyline points="8 12 12 16 16 12" /></>, 16)}
-                </span>
-                <div className="badge-text">
-                  <strong>{conquista.nome}</strong>
-                  <span>{conquista.data}</span>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
 

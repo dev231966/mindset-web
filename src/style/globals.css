@@ -1966,6 +1966,13 @@ body.data-saver .sidebar-promo {
   border-radius: 18px;
 }
 
+.avatar-xl {
+  width: 104px;
+  height: 104px;
+  font-size: 2.4rem;
+  border-radius: 24px;
+}
+
 .avatar-editable {
   position: relative;
   cursor: pointer;
@@ -1987,13 +1994,15 @@ body.data-saver .sidebar-promo {
 
 /* ==========================================
    MENU POPOVER
-   Primitivo reutilizável para qualquer menu suspenso
+   Primitivo reutilizável para qualquer menu suspenso,
+   centrado por baixo do elemento que o abre
    ========================================== */
 
 .menu-popover {
   position: absolute;
   top: calc(100% + 8px);
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   min-width: 180px;
   background: var(--surface-strong);
   border: 1px solid var(--border);
@@ -2102,12 +2111,23 @@ body.data-saver .sidebar-promo {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 18px 12px;
+  gap: 8px;
+  padding: 18px 10px;
   border-radius: var(--radius-md);
-  background: rgba(15, 76, 117, 0.04);
-  border: 1px solid rgba(15, 76, 117, 0.08);
   text-align: center;
+  text-decoration: none;
+  transition: transform 0.16s ease, background 0.16s ease;
+}
+
+.stat-block:hover {
+  transform: translateY(-3px);
+  background: rgba(15, 76, 117, 0.05);
+}
+
+.stat-block .card-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
 }
 
 .stat-block-value {
@@ -2118,7 +2138,7 @@ body.data-saver .sidebar-promo {
 }
 
 .stat-block-label {
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   color: var(--muted);
   line-height: 1.3;
 }
@@ -2174,10 +2194,47 @@ body.data-saver .sidebar-promo {
 }
 
 /* ==========================================
-   PÁGINA DE PERFIL
-   Só o que é mesmo específico desta página,
-   o resto vem dos primitivos acima
+   TEXTO EDITÁVEL
+   Input que parece texto normal até o tocares,
+   usado em qualquer campo que o utilizador edita
+   sem precisar de um botão Editar à parte
    ========================================== */
+
+.editable-text {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-family: inherit;
+  color: inherit;
+  text-align: center;
+  padding: 3px 8px;
+  border-radius: 8px;
+  transition: background 0.16s ease, box-shadow 0.16s ease;
+  max-width: 100%;
+}
+
+.editable-text:hover:not(:disabled) {
+  background: rgba(15, 76, 117, 0.05);
+}
+
+.editable-text:focus:not(:disabled) {
+  background: rgba(15, 76, 117, 0.07);
+  box-shadow: 0 0 0 2px rgba(50, 130, 184, 0.28);
+}
+
+.editable-text:disabled {
+  cursor: default;
+}
+
+/* ==========================================
+   PÁGINA DE PERFIL
+   Hero centralizado, informação do utilizador
+   como protagonista da página
+   ========================================== */
+
+.perfil-shell {
+  max-width: 620px;
+}
 
 .perfil-container {
   display: flex;
@@ -2188,12 +2245,82 @@ body.data-saver .sidebar-promo {
 .identity-card {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  align-items: flex-start;
+  align-items: center;
+  text-align: center;
+  gap: 4px;
+  padding: 36px 24px 28px;
 }
 
 .identity-avatar-block {
   position: relative;
+  margin-bottom: 14px;
+}
+
+.identity-name {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #143149;
+  letter-spacing: -0.02em;
+}
+
+.identity-nickname-row {
+  display: flex;
+  align-items: center;
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.identity-nickname {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.identity-divider {
+  width: 100%;
+  max-width: 320px;
+  height: 1px;
+  background: rgba(15, 76, 117, 0.08);
+  margin: 18px 0 16px;
+}
+
+.identity-secondary-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.identity-secondary-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted);
+}
+
+.identity-secondary-text {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.identity-secondary-disabled {
+  color: var(--muted);
+  padding: 3px 8px;
+}
+
+.identity-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+  animation: identity-actions-in 0.18s var(--ease);
+}
+
+@keyframes identity-actions-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 @media (max-width: 640px) {
@@ -2203,5 +2330,10 @@ body.data-saver .sidebar-promo {
 
   .stat-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .identity-secondary-row {
+    flex-direction: column;
+    gap: 10px;
   }
 }
