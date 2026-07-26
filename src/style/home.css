@@ -121,11 +121,13 @@
   position: relative;
   width: 100%;
   max-width: 340px;
+  padding: 32px 24px;
 }
 
 .hero-mockup-frame {
   position: relative;
   z-index: 2;
+  height: 420px;
   border-radius: var(--radius-xl);
   background: var(--surface-strong);
   border: 1px solid var(--border);
@@ -138,6 +140,10 @@
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.hero-mockup-card {
+  flex-shrink: 0;
 }
 
 .hero-mockup-card {
@@ -172,13 +178,10 @@
 }
 
 .hero-mockup-card-peek {
+  flex-shrink: 0;
   padding: 14px 18px;
   border-radius: var(--radius-lg);
   opacity: 0.7;
-}
-
-.hero-mockup-card-peek:last-child {
-  margin-bottom: -34px;
 }
 
 .hero-mockup-back-card {
@@ -266,7 +269,7 @@ body.no-animations .hero-float-icon {
   text-align: left;
 }
 
-.prova-valor-card {
+.prova-valor-grid .mini-card {
   text-decoration: none;
   cursor: pointer;
 }

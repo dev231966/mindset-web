@@ -22,46 +22,32 @@ import Configuracoes from './pages/Configuracoes.jsx'
 
 import './App.css'
 
-
 export default function App() {
   return (
     <SettingsProvider>
       <Routes>
 
+        {/* Rotas públicas — sem Header/Sidebar da app autenticada */}
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+
+        {/* Rotas autenticadas — envolvidas pelo Layout (Header + Sidebar) */}
         <Route element={<Layout />}>
 
-          <Route path="/" element={<Home />} />
-
-          <Route path="/login" element={<Login />} />
-
           <Route path="/dashboard" element={<Dashboard />} />
-
           <Route path="/explicacao" element={<Explicacao />} />
-
           <Route path="/avaliacao" element={<Avaliacao />} />
-
           <Route path="/estudos" element={<Estudos />} />
-
           <Route path="/ferramentas" element={<Ferramentas />} />
-
           <Route path="/material" element={<Material />} />
-
           <Route path="/evolucao" element={<Evolucao />} />
-
           <Route path="/ajuda-suporte" element={<AjudaSuporte />} />
-
           <Route path="/convidar-amigos" element={<ConvidarAmigos />} />
-
           <Route path="/conquistas" element={<Conquistas />} />
-
           <Route path="/sequencia-estudo" element={<SequenciaEstudo />} />
-
           <Route path="/quadro-honra" element={<QuadroHonra />} />
-
           <Route path="/loja-recompensas" element={<LojaRecompensas />} />
-
           <Route path="/perfil" element={<Perfil />} />
-
           <Route path="/configuracoes" element={<Configuracoes />} />
 
         </Route>
