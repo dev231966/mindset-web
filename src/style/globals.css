@@ -1920,67 +1920,184 @@ body.data-saver .sidebar-promo {
 }
 
 /* ==========================================
-   PÁGINA DE PERFIL
+   AVATAR
+   Primitivo reutilizável, substitui classes soltas
+   como user-avatar e user-avatar-sm por um único
+   sistema com modificador de tamanho
    ========================================== */
 
-.perfil-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.perfil-head {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.perfil-avatar-large {
-  width: 72px;
-  height: 72px;
-  border-radius: 16px;
+.avatar {
+  border-radius: 14px;
   background: linear-gradient(135deg, var(--primary-2), var(--primary));
   color: white;
   display: grid;
   place-items: center;
-  font-size: 1.8rem;
   font-weight: 900;
   flex-shrink: 0;
+  overflow: hidden;
+  border: none;
+  font-family: inherit;
 }
 
-.perfil-user-data {
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-sm {
+  width: 36px;
+  height: 36px;
+  font-size: 0.85rem;
+  border-radius: 10px;
+}
+
+.avatar-md {
+  width: 44px;
+  height: 44px;
+  font-size: 1rem;
+  border-radius: 12px;
+}
+
+.avatar-lg {
+  width: 76px;
+  height: 76px;
+  font-size: 1.9rem;
+  border-radius: 18px;
+}
+
+.avatar-editable {
+  position: relative;
+  cursor: pointer;
+}
+
+.avatar-edit-badge {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: white;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--surface-strong);
+}
+
+/* ==========================================
+   MENU POPOVER
+   Primitivo reutilizável para qualquer menu suspenso
+   ========================================== */
+
+.menu-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  min-width: 180px;
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow);
+  padding: 6px;
+  z-index: 50;
   display: flex;
   flex-direction: column;
-  gap: 3px;
-  flex: 1;
+  gap: 2px;
 }
 
-.perfil-user-data strong {
-  font-size: 1.05rem;
-  color: #143149;
+.menu-popover-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  border: none;
+  background: transparent;
+  color: #3f5667;
+  font-size: 0.84rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background 0.16s ease, color 0.16s ease;
 }
 
-.perfil-user-data span {
-  font-size: 0.82rem;
+.menu-popover-item:hover {
+  background: rgba(15, 76, 117, 0.06);
+  color: var(--primary);
+}
+
+.menu-popover-item.danger {
+  color: var(--danger);
+}
+
+.menu-popover-item.danger:hover {
+  background: rgba(220, 53, 69, 0.08);
+}
+
+/* ==========================================
+   CAMPO DE FORMULÁRIO
+   Primitivo reutilizável, qualquer página com
+   inputs usa isto, não só o Perfil
+   ========================================== */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.78rem;
+  font-weight: 700;
   color: var(--muted);
 }
 
-.perfil-email {
-  font-family: monospace;
-  font-size: 0.78rem !important;
-  color: rgba(15, 76, 117, 0.65) !important;
-  margin-top: 4px;
+.field input {
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: rgba(15, 76, 117, 0.03);
+  font-size: 0.92rem;
+  color: var(--text);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.16s ease, background 0.16s ease;
 }
 
-/* Stats em grid */
+.field input:focus {
+  border-color: var(--primary-2);
+  background: white;
+}
 
-.perfil-stats {
+.field input:disabled {
+  color: var(--muted);
+  cursor: not-allowed;
+  background: rgba(15, 76, 117, 0.05);
+}
+
+.field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ==========================================
+   GRELHA DE ESTATÍSTICAS
+   Primitivo reutilizável, qualquer página pode
+   mostrar 4 números lado a lado assim
+   ========================================== */
+
+.stat-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
-.perfil-stat {
+.stat-block {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1990,32 +2107,36 @@ body.data-saver .sidebar-promo {
   border-radius: var(--radius-md);
   background: rgba(15, 76, 117, 0.04);
   border: 1px solid rgba(15, 76, 117, 0.08);
+  text-align: center;
 }
 
-.perfil-stat-value {
+.stat-block-value {
   font-size: 1.35rem;
   font-weight: 900;
   color: #143149;
   letter-spacing: -0.02em;
 }
 
-.perfil-stat-label {
+.stat-block-label {
   font-size: 0.76rem;
   color: var(--muted);
-  text-align: center;
   line-height: 1.3;
 }
 
-/* Conquistas */
+/* ==========================================
+   LISTA DE BADGES
+   Primitivo reutilizável, serve para Perfil agora
+   e para a página Conquistas mais tarde
+   ========================================== */
 
-.perfil-conquistas {
+.badge-list {
   display: flex;
   flex-direction: column;
   gap: 8px;
   padding-top: 4px;
 }
 
-.perfil-conquista-badge {
+.badge-item {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -2025,7 +2146,7 @@ body.data-saver .sidebar-promo {
   border: 1px solid rgba(20, 184, 122, 0.12);
 }
 
-.perfil-conquista-icon {
+.badge-icon {
   width: 36px;
   height: 36px;
   border-radius: 10px;
@@ -2036,48 +2157,51 @@ body.data-saver .sidebar-promo {
   flex-shrink: 0;
 }
 
-.perfil-conquista-text {
+.badge-text {
   display: flex;
   flex-direction: column;
   gap: 1px;
 }
 
-.perfil-conquista-text strong {
+.badge-text strong {
   font-size: 0.86rem;
   color: #143149;
 }
 
-.perfil-conquista-text span {
+.badge-text span {
   font-size: 0.74rem;
   color: var(--muted);
 }
 
-/* Botão obsolete */
+/* ==========================================
+   PÁGINA DE PERFIL
+   Só o que é mesmo específico desta página,
+   o resto vem dos primitivos acima
+   ========================================== */
 
-.perfil-obsolete {
-  position: relative;
+.perfil-container {
   display: flex;
-  gap: 8px;
-  align-items: center;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.perfil-obsolete .btn {
-  opacity: 0.5;
-  cursor: not-allowed;
+.identity-card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: flex-start;
 }
 
-.perfil-obsolete .btn:hover {
-  transform: none;
+.identity-avatar-block {
+  position: relative;
 }
-
-/* Responsivo */
 
 @media (max-width: 640px) {
-  .perfil-head {
-    flex-direction: column;
+  .field-grid {
+    grid-template-columns: 1fr;
   }
 
-  .perfil-stats {
+  .stat-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
