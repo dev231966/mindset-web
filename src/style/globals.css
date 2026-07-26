@@ -1918,3 +1918,166 @@ body.data-saver .sidebar-promo {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+/* ==========================================
+   PÁGINA DE PERFIL
+   ========================================== */
+
+.perfil-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.perfil-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.perfil-avatar-large {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--primary-2), var(--primary));
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  font-weight: 900;
+  flex-shrink: 0;
+}
+
+.perfil-user-data {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.perfil-user-data strong {
+  font-size: 1.05rem;
+  color: #143149;
+}
+
+.perfil-user-data span {
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.perfil-email {
+  font-family: monospace;
+  font-size: 0.78rem !important;
+  color: rgba(15, 76, 117, 0.65) !important;
+  margin-top: 4px;
+}
+
+/* Stats em grid */
+
+.perfil-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.perfil-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px 12px;
+  border-radius: var(--radius-md);
+  background: rgba(15, 76, 117, 0.04);
+  border: 1px solid rgba(15, 76, 117, 0.08);
+}
+
+.perfil-stat-value {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: #143149;
+  letter-spacing: -0.02em;
+}
+
+.perfil-stat-label {
+  font-size: 0.76rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Conquistas */
+
+.perfil-conquistas {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.perfil-conquista-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(20, 184, 122, 0.06);
+  border: 1px solid rgba(20, 184, 122, 0.12);
+}
+
+.perfil-conquista-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(20, 184, 122, 0.12);
+  color: var(--success);
+  flex-shrink: 0;
+}
+
+.perfil-conquista-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.perfil-conquista-text strong {
+  font-size: 0.86rem;
+  color: #143149;
+}
+
+.perfil-conquista-text span {
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+/* Botão obsolete */
+
+.perfil-obsolete {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.perfil-obsolete .btn {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.perfil-obsolete .btn:hover {
+  transform: none;
+}
+
+/* Responsivo */
+
+@media (max-width: 640px) {
+  .perfil-head {
+    flex-direction: column;
+  }
+
+  .perfil-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
