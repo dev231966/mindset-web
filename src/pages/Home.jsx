@@ -1,26 +1,77 @@
 import { Link } from "react-router-dom";
-import {
-  MessageCircleQuestion,
-  ClipboardCheck,
-  Coins,
-  Wrench,
-  FolderOpen,
-} from "lucide-react";
 import MiniCard from "../components/dashboard/MiniCard";
 import HeroMockup from "../components/home/HeroMockup";
 import "../style/home.css";
 
+const iconProps = {
+  width: 20,
+  height: 20,
+  viewBox: "0 0 24 24",
+  fill: "none",
+  stroke: "currentColor",
+  strokeWidth: "1.8",
+  strokeLinecap: "round",
+  strokeLinejoin: "round",
+};
+
+function ExplicacaoIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M4 5.5h16v10H9l-4 3.5v-3.5H4v-10Z" />
+      <path d="M10 10c0-1.1.9-1.8 1.9-1.8 1 0 1.8.6 1.8 1.5 0 .9-.7 1.2-1.3 1.6-.5.3-.7.6-.7 1.1" />
+      <circle cx="12" cy="14.6" r="0.15" fill="currentColor" />
+    </svg>
+  );
+}
+
+function AvaliacaoIcon() {
+  return (
+    <svg {...iconProps}>
+      <rect x="5.5" y="4.5" width="13" height="16" rx="2" />
+      <path d="M9 4.5V3.8c0-.7.6-1.3 1.3-1.3h3.4c.7 0 1.3.6 1.3 1.3v.7" />
+      <path d="M8.5 12.5 11 15l4.5-5" />
+    </svg>
+  );
+}
+
+function EstudosIcon() {
+  return (
+    <svg {...iconProps}>
+      <ellipse cx="12" cy="7" rx="6.5" ry="3" />
+      <path d="M5.5 7v4c0 1.66 2.91 3 6.5 3s6.5-1.34 6.5-3V7" />
+      <path d="M5.5 11v4c0 1.66 2.91 3 6.5 3s6.5-1.34 6.5-3v-4" />
+    </svg>
+  );
+}
+
+function FerramentasIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M14.7 6.3a3.5 3.5 0 0 0-4.6 4.1L4.5 16v3h3l5.6-5.6a3.5 3.5 0 0 0 4.1-4.6l-2.3 2.3-2-2 2.3-2.3Z" />
+    </svg>
+  );
+}
+
+function MaterialIcon() {
+  return (
+    <svg {...iconProps}>
+      <path d="M4 7.5c0-.83.67-1.5 1.5-1.5H10l1.5 2h7c.83 0 1.5.67 1.5 1.5v.5H4v-2.5Z" />
+      <path d="M4 10h17.2a1 1 0 0 1 .97 1.24l-1.4 5.6a1.5 1.5 0 0 1-1.46 1.16H5.7a1.5 1.5 0 0 1-1.46-1.16L3 11.4A1 1 0 0 1 4 10Z" />
+    </svg>
+  );
+}
+
 const VANTAGENS = [
-  { label: "Explicações", icon: MessageCircleQuestion, tint: "tint-accent" },
-  { label: "Exames e simulados", icon: ClipboardCheck, tint: "tint-accent" },
-  { label: "Material guardado", icon: FolderOpen, tint: "tint-warning" },
+  { label: "Explicações", icon: ExplicacaoIcon, tint: "tint-accent" },
+  { label: "Exames e simulados", icon: AvaliacaoIcon, tint: "tint-accent" },
+  { label: "Material guardado", icon: MaterialIcon, tint: "tint-warning" },
 ];
 
 const CARDS_PROVA_VALOR = [
   {
     to: "/login",
     variant: "mini-card-featured",
-    icon: MessageCircleQuestion,
+    icon: ExplicacaoIcon,
     tint: "tint-accent",
     title: "Explicação",
     description: "Pergunta agora, entende agora, com explicação passo a passo.",
@@ -28,7 +79,7 @@ const CARDS_PROVA_VALOR = [
   {
     to: "/login",
     variant: "mini-card-avaliacao",
-    icon: ClipboardCheck,
+    icon: AvaliacaoIcon,
     tint: "tint-accent",
     title: "Avaliação",
     description: "Exames e simulados por disciplina, no teu ritmo.",
@@ -36,7 +87,7 @@ const CARDS_PROVA_VALOR = [
   {
     to: "/login",
     variant: "mini-card-gold",
-    icon: Coins,
+    icon: EstudosIcon,
     tint: "tint-gold",
     title: "Estudos",
     description: "Paga só pelo que usares, sem mensalidade fixa.",
@@ -44,7 +95,7 @@ const CARDS_PROVA_VALOR = [
   {
     to: "/login",
     variant: "mini-card-ferramentas",
-    icon: Wrench,
+    icon: FerramentasIcon,
     tint: "tint-warning",
     title: "Ferramentas",
     description: "Calculadora e equações passo a passo, sempre à mão.",
@@ -52,7 +103,7 @@ const CARDS_PROVA_VALOR = [
   {
     to: "/login",
     variant: "mini-card-material",
-    icon: FolderOpen,
+    icon: MaterialIcon,
     tint: "tint-warning",
     title: "Material",
     description: "Guarda cada explicação, revê sem gastar Estudos outra vez.",
@@ -104,7 +155,7 @@ function Hero() {
           <ul className="hero-vantagens">
             {VANTAGENS.map(({ label, icon: Icon, tint }) => (
               <li key={label} className={`hero-vantagem ${tint}`}>
-                <Icon size={18} />
+                <Icon />
                 <span>{label}</span>
               </li>
             ))}
