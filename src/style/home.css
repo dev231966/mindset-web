@@ -51,7 +51,8 @@
   padding: 0 20px;
 }
 
-.btn {
+.home-page .btn,
+.menu-drawer .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -67,23 +68,27 @@
   transition: transform 0.18s var(--h-ease), box-shadow 0.18s var(--h-ease);
 }
 
-.btn:hover {
+.home-page .btn:hover,
+.menu-drawer .btn:hover {
   transform: translateY(-2px);
 }
 
-.btn-primary {
+.home-page .btn-primary,
+.menu-drawer .btn-primary {
   background: linear-gradient(135deg, var(--h-forest), var(--h-forest-dark));
   color: #fff;
   box-shadow: 0 14px 26px rgba(18, 59, 38, 0.28);
 }
 
-.btn-secondary {
+.home-page .btn-secondary,
+.menu-drawer .btn-secondary {
   background: var(--h-surface);
   color: var(--h-forest);
   border: 1.5px solid var(--h-line);
 }
 
-.btn-lg {
+.home-page .btn-lg,
+.menu-drawer .btn-lg {
   min-height: 54px;
   padding: 0 28px;
   font-size: 1rem;
